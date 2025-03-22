@@ -11,7 +11,7 @@ class QueenSolver:
         return val
 
     @staticmethod
-    def solve(board_size: int):
+    def one_solve(board_size: int) -> [int]:
         # Inner recursive function
         def inner_solve(candidate: [int], row: int) -> ([int], bool):
             found = False  # initialize found
@@ -43,5 +43,34 @@ class QueenSolver:
         # Return a solution if found
         if solved:
             return solution
+        else:
+            return None
+
+    @staticmethod
+    def all_solve(board_size: int):
+        all_solutions = []
+
+        # Inner recursive function
+        def inner_solve(candidate: [int], row: int):
+            # Try to add a queen in each column
+            for j in range(board_size):
+                candidate[row] = j
+
+                # Check if the move is legal
+                if QueenSolver.__validate_pos(candidate, row):
+                    if row != board_size - 1:
+                        inner_solve(candidate, row + 1)  # Try to add a queen in the next row
+
+                    else:
+                        # Return a solution and set the found flag to True
+                        all_solutions.append(candidate.copy())
+
+        # Initialize the loop
+        empty_solution = [-1] * board_size
+        inner_solve(empty_solution, 0)
+
+        # Return a solution if found
+        if all_solutions:
+            return all_solutions
         else:
             return None
