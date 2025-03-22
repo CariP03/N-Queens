@@ -35,7 +35,7 @@ class BoardPen:
 
     def draw_board(self):
         # Avoid animation
-        t.tracer(1, 0)
+        t.tracer(self.size, 0)
 
         # Set initial position
         initial_pos = -self.size * BoardPen.__SQUARE_SIZE / 2
@@ -85,6 +85,7 @@ class BoardPen:
 
         # Draw the queen
         t.stamp()
+        t.update()
 
     def populate_board(self, board: [int]):
         for i in range(len(board)):
