@@ -85,3 +85,7 @@ class BoardPen:
 
         # Draw the queen
         t.stamp()
+
+    def populate_board(self, board: [int]):
+        for i in range(len(board)):
+            BoardPen.place_queen(self, i, board[i])

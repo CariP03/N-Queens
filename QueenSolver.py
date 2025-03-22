@@ -3,16 +3,10 @@ class QueenSolver:
     def __validate_pos(candidate: [int], row: int) -> bool:
         val = True
 
-        # Check for column threat
         for i in range(row):
-            if candidate[row] == candidate[i]:
+            # Check for column or diagonal threat
+            if candidate[row] == candidate[i] or abs(row - i) == abs(candidate[row] - candidate[i]):
                 val = False
-
-        # Check for diagonal threat
-        if val:
-            for i in range(row):
-                if abs(row - i) == abs(candidate[row] - candidate[i]):
-                    val = False
 
         return val
 
